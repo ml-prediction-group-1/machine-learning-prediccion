@@ -1,19 +1,74 @@
-# Práctica Tema 1 - Machine Learning
+# 🚀 Predicción del Ranking de Universidades de Pakistán  
+Repositorio colaborativo para el desarrollo de un sistema reproducible de Machine Learning mediante buenas prácticas de ingeniería, control de versiones y documentación profesional.
 
-Repositorio para el desarrollo de un modelo de predicción reproducible usando buenas prácticas de Git y GitHub.
+---
 
-## Estructura del proyecto
-- notebooks/: análisis y experimentación
-- src/: código final de entrenamiento y predicción
-- data/: datos (o enlaces a ellos)
-- models/: modelos entrenados
+# 🧠 1. Introducción  
+Este proyecto tiene como objetivo construir un servicio reproducible capaz de predecir el **ranking de universidades** pakistaníes utilizando modelos de Machine Learning.
 
-## Ejecución
-1. Instalar dependencias:
-pip install -r requirements.txt
+Se simula un entorno profesional de trabajo colaborativo, aplicando:
+- Git y GitHub en equipo  
+- Issues + Kanban board  
+- Protección de rama `main`  
+- Pre-commit hooks  
+- Documentación interactiva (Jupyter Book)  
+- EDA completo  
+- Pipeline de entrenamiento y predicción  
 
-2. Entrenar:
-python src/training.py --data data/dataset.csv --out_dir models
+El dataset se obtiene mediante **Kaggle Croissant** (JSON-LD), garantizando trazabilidad y reproducibilidad del origen de datos.
 
-3. Predecir:
-python src/prediction.py --model models/model.joblib --input data/test.csv --output preds.csv
+---
+
+# 🎯 2. Problema a Resolver  
+El objetivo es predecir el **Ranking** de distintas universidades en Pakistán a partir de sus características institucionales.
+
+### ¿Por qué es relevante?
+- Permite evaluar instituciones según características comunes.  
+- Puede ayudar a estudios académicos, consultoras o análisis de rendimiento educativo.  
+- Es un caso realista de regresión supervisada.
+
+---
+
+# 📊 3. Descripción del Dataset  
+El dataset original proviene de Kaggle:
+
+🔗 https://www.kaggle.com/datasets/ayeshaseherr/top-pakistani-universities
+
+Se extrae mediante Croissant y contiene información como:
+- Nombre  
+- Tipo de universidad  
+- Provincia  
+- Enrollments (tamaño)  
+- Ranking (variable objetivo)
+
+Tras el EDA, se genera un dataset limpio en:
+
+
+---
+
+# 🔍 4. Exploratory Data Analysis (EDA)
+
+El EDA se encuentra en:
+
+📁 `notebooks/01_exploracion.ipynb`
+
+Incluye:
+- Distribuciones de variables  
+- Valores nulos  
+- Correlaciones  
+- Outliers  
+- Limpieza final  
+- Exportación del CSV preparado  
+
+---
+
+# 🧩 5. Pipeline del Proyecto (Mermaid)
+
+```mermaid
+flowchart TD
+    A[Kaggle Dataset<br>(Croissant JSON-LD)] --> B[EDA<br>01_exploracion.ipynb]
+    B --> C[data/universities.csv]
+    C --> D[Entrenamiento<br>training.py]
+    D --> E[Modelo<br>model.joblib]
+    E --> F[Predicción<br>prediction.py]
+    F --> G[preds.csv]
