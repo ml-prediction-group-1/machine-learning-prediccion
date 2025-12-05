@@ -1,27 +1,28 @@
-name: pre-commit
+repos:
+  - repo: https://github.com/nbQA-dev/nbQA
+    rev: 1.9.2
+    hooks:
+      - id: nbqa-black
+      - id: nbqa-flake8
 
-on:
-  pull_request:
-  push:
-    branches: [ main ]
+  - repo: https://github.com/psf/black
+    rev: 23.9.1
+    hooks:
+      - id: black
+        language_version: python3
 
-jobs:
-  pre-commit:
-    runs-on: ubuntu-latest
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.4
+    hooks:
+      - id: ruff
+        args: [--fix]
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.6.1
+    hooks:
+      - id: nbstripout
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install pre-commit nbqa black ruff nbstripout jupytext
-
-      - name: Run pre-commit hooks
-        run: pre-commit run --all-files
+  - repo: https://github.com/mwouts/jupytext
+    rev: v1.16.0
+    hooks:
+      - id: jupytext
