@@ -2,13 +2,11 @@ name: Build Jupyter Book
 
 on:
   push:
-    branches: [main]
-  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -16,33 +14,25 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: "3.10"
 
-      - name: Install dependencies
+      - name: Install Jupyter Book
         run: |
-          pip install -U jupyter-book
+          pip install -U pip
+          pip install jupyter-book
 
-      - name: Build the Jupyter Book
+      - name: Build the book
         run: |
           jupyter-book build book/
 
-      - name: Upload built HTML to GitHub Pages
-        uses: actions/upload-pages-artifact@v1
+      - name: Copy book to docs/
+        run: |
+          rm -rf docs/*
+          mkdir -p docs
+          cp -r book/_build/html/* docs/
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          path: book/_build/html/
-
-  deploy:
-    needs: build
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+          commit_message: "Update Jupyter Book"
+          branch: main
