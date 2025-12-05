@@ -10,7 +10,7 @@ score = st.slider("Score", 0.0, 1.0, 0.5)
 
 # Validación
 if edad <= 0:
-    st.error("Edad inválida")
+    st.error("Edad inválida") 
 
 if st.button("Predecir"):
     pred = edad * 0.1 + ingresos * 0.01 + (1 if genero=="Hombre" else 0) + score * 5
