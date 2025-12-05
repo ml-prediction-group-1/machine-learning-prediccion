@@ -1,5 +1,4 @@
 format: jb-book
 root: index
 chapters:
-  - file: intro
-  - file: notebooks/01_exploracion
+  - file: notebooks/eda
