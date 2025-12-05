@@ -73,3 +73,4 @@ flowchart TD
     E --> F[Predicción<br>prediction.py]
     F --> G[preds.csv]
 
+📌 Nota técnica: Se añade esta línea para forzar la ejecución del workflow de pre-commit en GitHub Actions.
