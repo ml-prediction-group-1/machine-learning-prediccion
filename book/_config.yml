@@ -1,0 +1,12 @@
+title: "ML - Predicción Ranking"
+author: "Grupo 1"
+
+execute:
+  execute_notebooks: "off"
+
+sphinx:
+  config:
+    extensions:
+      - myst_nb
+      - sphinx.ext.mathjax
+      - sphinxcontrib.mermaid
