@@ -2,13 +2,12 @@ name: Build Jupyter Book
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -16,30 +15,30 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: '3.10'
 
-      - name: Install Jupyter Book
+      - name: Install Jupyter Book and dependencies
         run: |
-          pip install -U jupyter-book
+          python -m pip install --upgrade pip
+          pip install jupyter-book
+          pip install pandas numpy scikit-learn joblib
 
       - name: Build the book
         run: |
-          jb build book/
+          jupyter-book build book/
 
-      - name: Verify build output
-        run: |
-          echo "Contents of book/_build/html:"
-          ls -R book/_build/html || exit 1
-
-      - name: Copy book to docs/
+      - name: Clear docs folder
         run: |
           rm -rf docs/*
+      
+      - name: Copy built HTML to docs
+        run: |
           cp -r book/_build/html/* docs/
 
       - name: Commit and push changes
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
           git add docs/
-          git commit -m "Update Jupyter Book" || echo "No changes to commit"
+          git commit -m "Update Jupyter Book build" || echo "No changes to commit"
           git push
