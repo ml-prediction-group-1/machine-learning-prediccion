@@ -1,0 +1,28 @@
+repos:
+  - repo: https://github.com/nbQA-dev/nbQA
+    rev: 1.9.2
+    hooks:
+      - id: nbqa-black
+      - id: nbqa-flake8
+
+  - repo: https://github.com/psf/black
+    rev: 23.9.1
+    hooks:
+      - id: black
+        language_version: python3
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.4
+    hooks:
+      - id: ruff
+        args: [--fix]
+
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.6.1
+    hooks:
+      - id: nbstripout
+
+  - repo: https://github.com/mwouts/jupytext
+    rev: v1.16.0
+    hooks:
+      - id: jupytext
