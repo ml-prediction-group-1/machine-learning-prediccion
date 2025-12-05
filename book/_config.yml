@@ -1,12 +1,12 @@
-title: "ML - Predicción Ranking"
-author: "Grupo 1"
-
+# Jupyter Book Configuration
+title: "Machine Learning Predicción - Libro"
+author: "Manuel y Diego"
+logo: ""
 execute:
   execute_notebooks: "off"
 
-sphinx:
-  config:
-    extensions:
-      - myst_nb
-      - sphinx.ext.mathjax
-      - sphinxcontrib.mermaid
+html:
+  favicon: ""
+  use_issues_button: true
+  use_repository_button: true
+  use_edit_page_button: true
