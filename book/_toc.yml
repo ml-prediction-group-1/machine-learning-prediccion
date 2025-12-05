@@ -3,3 +3,5 @@ root: index
 
 chapters:
   - file: notebooks/eda
+  - file: notebooks/training
+  - file: notebooks/prediction
