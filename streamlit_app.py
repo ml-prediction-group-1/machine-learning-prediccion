@@ -13,7 +13,7 @@ if edad <= 0:
     st.error("Edad inválida") 
 
 if st.button("Predecir"):
-    pred = edad * 0.1 + ingresos * 0.01 + (1 if genero=="Hombre" else 0) + score * 5
+    pred = edad * 0.1 + ingresos * 0.01 + (1 if genero=="Hombre" else 0) + score * 5 
     st.success(f"Predicción estimada: {pred:.2f}")
 import matplotlib.pyplot as plt
 import pandas as pd
