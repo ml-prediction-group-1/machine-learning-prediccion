@@ -1,25 +1,44 @@
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
-    hooks:
-      - id: check-yaml
-      - id: end-of-file-fixer
-      - id: trailing-whitespace
-
-  - repo: https://github.com/kynan/nbstripout
-    rev: 0.5.0
-    hooks:
-      - id: nbstripout
-        name: Strip outputs from notebooks
-
+  # ------------------------------
+  # NBQA: analiza notebooks con black y flake8
+  # ------------------------------
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.5.0
+    rev: 1.9.2
     hooks:
       - id: nbqa-black
-      - id: nbqa-ruff
-        additional_dependencies: ["ruff"]
+      - id: nbqa-flake8
 
+  # ------------------------------
+  # BLACK: formateo de código
+  # ------------------------------
   - repo: https://github.com/psf/black
-    rev: 24.2.0
+    rev: 23.9.1
     hooks:
       - id: black
+        language_version: python3
+
+  # ------------------------------
+  # RUFF: linter muy rápido
+  # ------------------------------
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.4
+    hooks:
+      - id: ruff
+        args: [--fix]
+
+  # ------------------------------
+  # NBSTRIPOUT: limpia outputs de notebooks
+  # ------------------------------
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.6.1
+    hooks:
+      - id: nbstripout
+
+  # ------------------------------
+  # JUPYTEXT: sincronización notebooks .ipynb ↔ .py/md
+  # ------------------------------
+  - repo: https://github.com/mwouts/jupytext
+    rev: v1.16.0
+    hooks:
+      - id: jupytext
+
