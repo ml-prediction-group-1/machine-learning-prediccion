@@ -18,7 +18,7 @@ if st.button("Predecir"):
 import matplotlib.pyplot as plt
 import pandas as pd
 
-st.header("Métricas históricas del modelo (simuladas)")
+st.header("Métricas históricas del modelo (simuladas)") 
 
 # Fechas simuladas
 fechas = pd.date_range("2024-01-01", periods=12, freq="M")
